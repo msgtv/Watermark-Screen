@@ -13,7 +13,6 @@ namespace WatermarkScreen
         {
             if (Process.GetProcesses().Count(x => x.ProcessName == "Watermark-Screen") > 1)
             {
-                Console.WriteLine("Watermark-Screen уже запущен!");
                 Process.GetCurrentProcess().Kill();
             }                
 

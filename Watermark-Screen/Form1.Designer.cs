@@ -42,7 +42,7 @@ namespace WatermarkScreen
             this.ClientSize = new System.Drawing.Size(259, 111);
 
             //I used a Monospace Font to remove the reposition measure that happens when use a proportional font.
-            this.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Consolas", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             
 
             //Specifies the dimensions of the margins of a printed page.
@@ -54,7 +54,7 @@ namespace WatermarkScreen
             this.Name = "Watermark";
 
             //Sets the form's opacity level.
-            this.Opacity = .25;
+            this.Opacity = .15;
 
             //Indicates whether a window appears in front of the others.
             this.TopMost = true;

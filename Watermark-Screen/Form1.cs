@@ -86,7 +86,7 @@ namespace WatermarkScreen
                 }
                 else
                 {
-                    for (int j = 0; j < wid2 - 1; j = j + 3)
+                    for (int j = 0; j < wid2 - 1; j = j + 4)
                     {
                         e.Graphics.DrawString(TextToShow + TimeAndDate, this.Font, ToolDraw, (float)(wid1 + szF1.Width * (j + 1)), (float)(hei1 + szF1.Height * i));
                     }
