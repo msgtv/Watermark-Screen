@@ -53,7 +53,7 @@ namespace WatermarkScreen
 
         private void Watermark_Paint(object sender, PaintEventArgs e)
         {
-            using (var brush = new SolidBrush(Color.Green))
+            /*using (var brush = new SolidBrush(Color.Green))
             {
                 e.Graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
                 e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -64,7 +64,53 @@ namespace WatermarkScreen
                 var y = (this.Height - textSize.Height) / 2;
 
                 e.Graphics.DrawString(TextToShow + TimeAndDate, this.Font, brush, x, y);
+            }*/
+
+
+
+            SizeF szF1 = e.Graphics.MeasureString(TextToShow + TimeAndDate, this.Font);
+
+            //Returns the larger of two specified numbers.
+            int max = Math.Max(this.Width, this.Height);
+
+            //Is the Object used to draw lines, instead "Soolid Brush" we could use too classes "Pen", "Brush".
+            var ToolDraw = new SolidBrush(Color.FromArgb(255, Color.Red));
+
+            //
+            double wid1 = (this.Width % szF1.Width) / 2;
+            double wid2 = Math.Truncate(this.Width / szF1.Width);
+            double hei1 = (this.Height % szF1.Height) / 2;
+            double hei2 = Math.Truncate(this.Height / szF1.Height);
+
+            // Antialising(e); // сглаживание шрифтов
+            // e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+
+            for (int i = 0; i < hei2; i++)
+            {
+                if ((i % 2) == 0)
+                {
+                    for (int j = 0; j < wid2; j = j + 2)
+                    {
+                        e.Graphics.DrawString(TextToShow + TimeAndDate, this.Font, ToolDraw, (float)(wid1 + szF1.Width * j), (float)(hei1 + szF1.Height * i));
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < wid2 - 1; j = j + 2)
+                    {
+                        e.Graphics.DrawString(TextToShow + TimeAndDate, this.Font, ToolDraw, (float)(wid1 + szF1.Width * (j + 1)), (float)(hei1 + szF1.Height * i));
+                    }
+                    // for (double x = (1 * (int)szF1.Width) ; x <= this.Width; x = x + (2 * (int)szF1.Width))
+                    //{
+
+                    // e.Graphics.DrawString(Text, this.Font, ToolDraw, (float)x, (float)y);
+                    //Bibliotecas System.Drawing tem a classe Graphics e Drawing2D
+                    //DrawString, DrawPath, Pen, SolidBrush,Brush
+                    //}
+                }
             }
+
+            e.Graphics.DrawString(Environment.MachineName, this.Font, ToolDraw, this.Width - 250, this.Height - 225);
         }
 
         private string GetTimeAndDate()
