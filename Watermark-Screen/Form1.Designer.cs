@@ -43,6 +43,7 @@ namespace WatermarkScreen
 
             //I used a Monospace Font to remove the reposition measure that happens when use a proportional font.
             this.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            
 
             //Specifies the dimensions of the margins of a printed page.
             this.Margin = new System.Windows.Forms.Padding(7);
@@ -53,7 +54,7 @@ namespace WatermarkScreen
             this.Name = "Watermark";
 
             //Sets the form's opacity level.
-            this.Opacity = .15;
+            this.Opacity = .25;
 
             //Indicates whether a window appears in front of the others.
             this.TopMost = true;
@@ -70,19 +71,6 @@ namespace WatermarkScreen
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.Gray;
             this.WindowState = FormWindowState.Maximized;
-
-            //Gets or sets the coordinates of the upper-left corner of the control relative to the upper-left corner of its container.
-            //this.Location = Screen.AllScreens[1].WorkingArea.Location;
-
-            //if (Screen.AllScreens.Length > 1)
-            //{
-            //    this.Location = Screen.AllScreens[1].WorkingArea.Location;
-            //}
-            //else
-            //{
-                // Если доступен только один экран, установите местоположение формы относительно его рабочей области
-            //    this.Location = Screen.PrimaryScreen.WorkingArea.Location;
-            //}
 
             //Occurs before the control becomes visible for the first time.
             this.Load += new System.EventHandler(this.Watermark_Load);
