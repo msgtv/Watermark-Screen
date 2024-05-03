@@ -1,5 +1,4 @@
-﻿
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WatermarkScreen
 {
@@ -42,8 +41,9 @@ namespace WatermarkScreen
             this.ClientSize = new System.Drawing.Size(259, 111);
 
             //I used a Monospace Font to remove the reposition measure that happens when use a proportional font.
+            //this.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            
+
 
             //Specifies the dimensions of the margins of a printed page.
             this.Margin = new System.Windows.Forms.Padding(7);

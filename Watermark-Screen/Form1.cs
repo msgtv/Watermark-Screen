@@ -24,6 +24,9 @@ namespace WatermarkScreen
         {
             InitializeComponent();
 
+            // Обработка аргументов командной строки
+            ProcessCommandLineArguments();
+
             SetFormLocation();
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.DoubleBuffer, true);
@@ -128,6 +131,66 @@ namespace WatermarkScreen
         {
             TimeAndDate = GetTimeAndDate();
             Invalidate();
+        }
+
+        private void ProcessCommandLineArguments()
+        {
+            if (CommandLineArguments != null && CommandLineArguments.Length > 0)
+            {
+                // Обработка аргументов командной строки
+                foreach (string arg in CommandLineArguments)
+                {
+                    if (arg == "--help" || arg == "-h")
+                    {
+                        ShowHelp();
+                        Environment.Exit(0);
+                    }
+                    // Разделяем аргумент на ключ и значение
+                    string[] parts = arg.Split('=');
+                    string key = parts[0];
+                    string value = parts.Length > 1 ? parts[1] : null;
+
+                    if (value == null) continue;
+
+                    switch (key)
+                    {
+                        case "--opacity":
+                            float opacity;
+
+                            if (float.TryParse(value, out opacity))
+                            {
+                                if (opacity >= 0 && opacity <= 1)
+                                {
+                                    this.Opacity = opacity;
+                                }
+                            }
+                            break;
+                        case "--color":
+                            if (Color.FromName(value).IsKnownColor)
+                            {
+                                this.TextColor = Color.FromName(value);
+                            }
+                            break;
+                        case "--fontSize":
+                            float fs;
+                            if (float.TryParse(value, out fs))
+                            {
+                                // this.Font = new System.Drawing.Font("Consolas", fs, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+                                this.Font = new Font(this.Font.FontFamily, fs, this.Font.Style, this.Font.Unit);
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        static void ShowHelp()
+        {
+            Console.WriteLine("Справка по аргументам командной строки:");
+            Console.WriteLine("-h, --help      Вывести справку по аргументам");
+            Console.WriteLine("--opacity=      Установить прозрачность (значение от 0 до 1)");
+            Console.WriteLine("--fontSize=     Установить размер шрифта");
+            Console.WriteLine("--color=        Установить цвет шрифта (например, red, blue, green)");
         }
     }
 }

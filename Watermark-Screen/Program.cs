@@ -15,13 +15,17 @@ namespace WatermarkScreen
             {
                 Console.WriteLine("Watermark-Screen уже запущен!");
                 Process.GetCurrentProcess().Kill();
-            }                
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+            //Application.Run(new Watermark());
+
             // Создаем новый экземпляр формы Watermark
             Watermark form = new Watermark();
+
+            // Передаем аргументы командной строки форме
+            form.CommandLineArguments = args;
 
             // Запускаем приложение с созданной формой
             Application.Run(form);
